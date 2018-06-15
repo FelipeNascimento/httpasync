@@ -1,5 +1,5 @@
 {
-  "name": "httpasync",
+  "name": "httpasync-sender",
   "version": "0.0.1",
   "description": "Library to make HTTP and HTTPS async calls using node.js >=8",
   "main": "index.js",
