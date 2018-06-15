@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FelipeNascimento/httpasync.git"
+    "url": "git+https://github.com/FelipeNascimento/httpasync-sender.git"
   },
   "keywords": [
     "request",
@@ -20,8 +20,8 @@
   "author": "Felipe Nascimento",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/FelipeNascimento/httpasync/issues"
+    "url": "https://github.com/FelipeNascimento/httpasync-sender/issues"
   },
-  "homepage": "https://github.com/FelipeNascimento/httpasync#readme",
+  "homepage": "https://github.com/FelipeNascimento/httpasync-sender#readme",
   "dependencies": {}
 }
