@@ -1,0 +1,27 @@
+{
+  "name": "httpasync",
+  "version": "0.0.1",
+  "description": "Library to make HTTP and HTTPS async calls using node.js >=8",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FelipeNascimento/httpasync.git"
+  },
+  "keywords": [
+    "request",
+    "GET",
+    "POST",
+    "PUT",
+    "DELETE"
+  ],
+  "author": "Felipe Nascimento",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FelipeNascimento/httpasync/issues"
+  },
+  "homepage": "https://github.com/FelipeNascimento/httpasync#readme",
+  "dependencies": {}
+}
