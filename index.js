@@ -5,6 +5,7 @@ class HttpClient {
     return new Promise((fulfill, reject) => {
       options = options || {};
       options.headers = options.headers || {};
+      options.timeout = options.timeout || 5000;
       options.port = options.port || (secure ? 443 : 80);
       options.method = "GET";
       options.headers["User-Agent"] =
@@ -43,6 +44,7 @@ class HttpClient {
     return new Promise((fulfill, reject) => {
       options = options || {};
       options.headers = options.headers || {};
+      options.timeout = options.timeout || 5000;
       options.port = options.port || (secure ? 443 : 80);
       options.method = "POST";
       options.headers["User-Agent"] =
@@ -83,6 +85,7 @@ class HttpClient {
     return new Promise((fulfill, reject) => {
       options = options || {};
       options.headers = options.headers || {};
+      options.timeout = options.timeout || 5000;
       options.port = options.port || (secure ? 443 : 80);
       options.method = "PUT";
       options.headers["User-Agent"] =
@@ -123,6 +126,7 @@ class HttpClient {
     return new Promise((fulfill, reject) => {
       options = options || {};
       options.headers = options.headers || {};
+      options.timeout = options.timeout || 5000;
       options.port = options.port || (secure ? 443 : 80);
       options.method = "DELETE";
       options.headers["User-Agent"] =
