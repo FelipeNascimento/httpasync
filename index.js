@@ -13,10 +13,10 @@ class HttpClient {
       options.headers["Content-Type"] =
         options.headers["Content-Type"] || "application/json";
       let client = secure ? https : http;
-      var req = client.request(options, function(res) {
+      var req = client.request(options, res => {
         let body = "";
         res.setEncoding("utf8");
-        res.on("data", function(d) {
+        res.on("data", function (d) {
           body += d;
         });
         res.on("end", () => {
@@ -33,9 +33,13 @@ class HttpClient {
               body: body
             });
         });
-        res.on("error", err => {
-          reject(err);
-        });
+      });
+      req.on("error", err => {
+        reject(err);
+      });
+      req.on("timeout", err => {
+        req.abort()
+        reject({ message: `Request was aborted due to reach timeout ${options.timeout} ms` });
       });
       req.end();
     });
@@ -53,10 +57,10 @@ class HttpClient {
         options.headers["Content-Type"] || "application/json";
       options.headers["Content-Length"] = Buffer.byteLength(payload);
       let client = secure ? https : http;
-      var req = client.request(options, function(res) {
+      var req = client.request(options, res => {
         let body = "";
         res.setEncoding("utf8");
-        res.on("data", function(d) {
+        res.on("data", function (d) {
           body += d;
         });
         res.on("end", () => {
@@ -73,9 +77,13 @@ class HttpClient {
               body: body
             });
         });
-        res.on("error", err => {
-          reject(err);
-        });
+      });
+      req.on("error", err => {
+        reject(err);
+      });
+      req.on("timeout", err => {
+        req.abort()
+        reject({ message: `Request was aborted due to reach timeout ${options.timeout} ms` });
       });
       req.write(payload);
       req.end();
@@ -94,10 +102,10 @@ class HttpClient {
         options.headers["Content-Type"] || "application/json";
       options.headers["Content-Length"] = Buffer.byteLength(payload);
       let client = secure ? https : http;
-      var req = client.request(options, function(res) {
+      var req = client.request(options, function (res) {
         let body = "";
         res.setEncoding("utf8");
-        res.on("data", function(d) {
+        res.on("data", function (d) {
           body += d;
         });
         res.on("end", () => {
@@ -114,15 +122,19 @@ class HttpClient {
               body: body
             });
         });
-        res.on("error", err => {
-          reject(err);
-        });
+      });
+      req.on("error", err => {
+        reject(err);
+      });
+      req.on("timeout", err => {
+        req.abort()
+        reject({ message: `Request was aborted due to reach timeout ${options.timeout} ms` });
       });
       req.write(payload);
       req.end();
     });
   }
-  async DELETE(options, secure) {
+  async DELETE(options, payload, secure) {
     return new Promise((fulfill, reject) => {
       options = options || {};
       options.headers = options.headers || {};
@@ -133,11 +145,13 @@ class HttpClient {
         options.headers["User-Agent"] || "node.js";
       options.headers["Content-Type"] =
         options.headers["Content-Type"] || "application/json";
+      options.headers["Content-Length"] = Buffer.byteLength(payload);
+
       let client = secure ? https : http;
-      var req = client.request(options, function(res) {
+      var req = client.request(options, function (res) {
         let body = "";
         res.setEncoding("utf8");
-        res.on("data", function(d) {
+        res.on("data", function (d) {
           body += d;
         });
         res.on("end", () => {
@@ -154,10 +168,15 @@ class HttpClient {
               body: body
             });
         });
-        res.on("error", err => {
-          reject(err);
-        });
       });
+      req.on("error", err => {
+        reject(err);
+      });
+      req.on("timeout", err => {
+        req.abort()
+        reject({ message: `Request was aborted due to reach timeout ${options.timeout} ms` });
+      });
+      req.write(payload);
       req.end();
     });
   }
